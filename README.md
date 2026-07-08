@@ -9,12 +9,14 @@ Este projeto implementa o teste pratico proposto pela Univille: uma API em Larav
 ## Estrutura
 
 - `backend/`: API Laravel com autenticacao via Sanctum, ingestao assincrona, jobs em fila e SQLite.
+- `backend_laravel9/`: copia isolada da API portada e validada em Laravel 9, sem alterar a entrega principal.
 - `frontend/`: SPA em Vue 3 com Composition API, dashboard autenticado, filtros, paginacao e short polling.
 
 ## Tecnologias
 
 - PHP 8.3
-- Laravel 13
+- Laravel 13 no backend principal
+- Laravel 9.52.21 na copia isolada `backend_laravel9/`
 - Laravel Sanctum
 - SQLite
 - Queues com driver `database`
@@ -65,6 +67,22 @@ O backend foi organizado em camadas para evidenciar separacao de responsabilidad
 7. Execute `php artisan migrate`.
 8. Suba a API com `php artisan serve`.
 9. Em outro terminal, suba o worker com `php artisan queue:work`.
+
+### Backend alternativo em Laravel 9
+
+1. Entre em `backend_laravel9/`.
+2. Execute `composer install`.
+3. Garanta que o arquivo `.env` exista. Se necessario, copie de `.env.example`.
+4. Confirme os valores principais no `.env`:
+   - `DB_CONNECTION=sqlite`
+   - `QUEUE_CONNECTION=database`
+   - `TRANSACTIONS_SOURCE_PATH=storage/app/mock-transactions.json`
+5. Se o arquivo `database/database.sqlite` nao existir, crie-o.
+6. Execute `php artisan key:generate`.
+7. Execute `php artisan migrate`.
+8. Suba a API com `php artisan serve --host=127.0.0.1 --port=8001`.
+9. Em outro terminal, suba o worker com `php artisan queue:work`.
+10. Se quiser apontar o frontend para essa copia, ajuste `VITE_BACKEND_URL=http://127.0.0.1:8001` no `.env` do frontend.
 
 ### Frontend
 
@@ -152,6 +170,8 @@ O frontend entrega:
 - Os valores monetarios sao persistidos em centavos via `amount_cents`.
 - A autenticacao da API utiliza Laravel Sanctum com Bearer Token.
 - O frontend usa Vue 3 com `script setup`, Vite e Tailwind CSS 4.
+- A entrega principal continua em `backend/`.
+- A pasta `backend_laravel9/` foi criada como copia isolada para atender a verificacao especifica de compatibilidade com Laravel 9.
 
 ## Testes executados
 
@@ -162,6 +182,14 @@ php artisan migrate:fresh
 php artisan route:list --path=api
 php artisan test tests/Feature/AuthApiTest.php tests/Feature/TransactionImportTest.php
 npm run build
+```
+
+Laravel 9 alternativo validado com:
+
+```bash
+php artisan route:list --path=api
+php artisan migrate:fresh --force
+php artisan test
 ```
 
 Os testes cobrem:
