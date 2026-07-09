@@ -1,0 +1,41 @@
+[
+  {
+    "id": "txn-1001",
+    "reference": "INV-2026-001",
+    "description": "Pagamento de fatura",
+    "amount": "1200.00",
+    "currency": "BRL",
+    "occurred_at": "2026-07-01T10:15:00-03:00"
+  },
+  {
+    "id": "txn-1002",
+    "reference": "INV-2026-002",
+    "description": "Recebimento recorrente",
+    "amount": "950.50",
+    "currency": "BRL",
+    "occurred_at": "2026-07-02T14:20:00-03:00"
+  },
+  {
+    "id": "txn-1003",
+    "reference": "INV-2026-003",
+    "description": "Assinatura mensal",
+    "amount": "150.00",
+    "currency": "BRL",
+    "occurred_at": "2026-07-03T09:00:00-03:00"
+  },
+  {
+    "id": "txn-1004",
+    "reference": "INV-2026-004",
+    "description": "Registro sem valor",
+    "currency": "BRL",
+    "occurred_at": "2026-07-04T11:30:00-03:00"
+  },
+  {
+    "id": "txn-1005",
+    "reference": "INV-2026-005",
+    "description": "Registro com data invalida",
+    "amount": "320.00",
+    "currency": "BRL",
+    "occurred_at": "data-invalida"
+  }
+]

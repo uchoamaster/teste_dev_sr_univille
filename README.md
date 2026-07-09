@@ -134,6 +134,8 @@ Protegidas:
 
 As transacoes de entrada estao em `backend/storage/app/mock-transactions.json`.
 
+Esse arquivo faz parte do repositorio e deve ser publicado junto com o restante do projeto.
+
 O arquivo contem exemplos validos e invalidos para demonstrar:
 
 - processamento normal

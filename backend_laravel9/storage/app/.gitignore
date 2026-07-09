@@ -1,3 +1,4 @@
 *
 !public/
+!mock-transactions.json
 !.gitignore
